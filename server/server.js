@@ -24,6 +24,9 @@ connectDB();
 
 app.use('/api/v1/auth',authRoutes)
 
+// serve uploads folder
+app.use("/uploads", express.static(path.join(path.dirname(fileURLToPath(import.meta.url)), "uploads")));
+
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
