@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 
 import connectDB from './config/dbConfig.js';
 import authRoutes from './routes/authRoutes.js';
+import incomeRoutes from './routes/incomeRoutes.js';
 
 dotenv.config();
 
@@ -22,7 +23,8 @@ app.use(express.json());
 
 connectDB();
 
-app.use('/api/v1/auth',authRoutes)
+app.use('/api/v1/auth',authRoutes);
+app.use('/api/v1/income',incomeRoutes);
 
 // serve uploads folder
 app.use("/uploads", express.static(path.join(path.dirname(fileURLToPath(import.meta.url)), "uploads")));
