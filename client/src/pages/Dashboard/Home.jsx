@@ -9,6 +9,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import InfoCard from "../../components/Cards/InfoCard";
 import { addThousandsSeparator } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
+import RecentTransactions from "../../components/Dashboard/RecentTransactions";
 
 
 const Home = () =>{
@@ -74,6 +75,13 @@ const Home = () =>{
                         label = "Total Expense"
                         value = {addThousandsSeparator(dashboardData?.totalExpense) || 0}
                         color = "bg-red-500"
+                    />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <RecentTransactions
+                        transactions = {dashboardData?.recentTransactions }
+                        onSeeMore = {() => navigate("/expense")}
                     />
                 </div>
             </div>
