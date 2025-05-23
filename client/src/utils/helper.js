@@ -1,5 +1,5 @@
-import { data } from "react-router-dom";
-
+// This file contains utility functions that can be used throughout the application
+// such as formatting dates, validating email addresses, and manipulating strings.
 export const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
