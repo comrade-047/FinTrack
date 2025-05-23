@@ -12,7 +12,7 @@ const TransactionInfoCard = ({ title, icon, date, amount, type, hideDeleteBtn })
                 {icon ? (
                     <img src={icon} alt={title} className="w-6 h-6 "/>
                 ):(
-                    <LaUtensils/>
+                    <LuUtensils/>
                 )}
             </div>
 

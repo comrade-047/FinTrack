@@ -12,7 +12,7 @@ import customLegend from "./CustomLegend";
 
 const CustomPieChart = ({ data, label, totalAmount, colors, showTextAnchor }) => {
     return (
-        <ResponsiveContainer>
+        <ResponsiveContainer width="100%" height={380}>
             <PieChart>
                 <Pie
                     data={data}

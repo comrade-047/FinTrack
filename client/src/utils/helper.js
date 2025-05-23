@@ -1,3 +1,5 @@
+import { data } from "react-router-dom";
+
 export const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
@@ -23,4 +25,13 @@ export const addThousandsSeparator = (num) => {
     const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     return fractionalPart ? `${formattedIntegerPart}.${fractionalPart}` : formattedIntegerPart;
+}
+
+export const prepareExpenseBarChartData = (data = []) =>{
+    const chartData = data.map((item) => ({
+        category:item?.category,
+        amount: item?.amount,
+    }));
+
+    return chartData;
 }
