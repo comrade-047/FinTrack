@@ -6,6 +6,7 @@ import {
   Route,
   Navigate
 } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
@@ -27,8 +28,17 @@ const App = () => {
             <Route path="/income" exact element={<Income/>} />
             <Route path="/expense" exact element={<Expense/>} />
           </Routes>
+          <Toaster
+              toastOptions={{
+                className: '',
+                style: {
+                  fontSize: '13px',
+                },
+              }}
+          />
         </Router>
       </div>
+
     </UserProvider>
   )
 }
