@@ -15,7 +15,7 @@ const ExpenseList = ({ transactions, onDelete, onDownload }) => {
                     <LuDownload className="text-base" /> Download
                 </button>
             </div>
-            {console.log("transactions", transactions)} 
+            {/* {console.log("transactions", transactions)}  */}
             <div className="grid grid-cols-1 md:grid-cols-2" >
                 {transactions?.map((expense) => (
                     <TransactionInfoCard

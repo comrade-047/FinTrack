@@ -1,6 +1,8 @@
 import express from 'express';
-import {protect} from '../middleware/authMiddleware.js';
+import cloudinary from '../config/cloudinary.js';
+import streamifier from 'streamifier';
 
+import {protect} from '../middleware/authMiddleware.js';
 import {registerUser,loginUser,getUserInfo} from '../controllers/authController.js';
 import { upload } from '../middleware/uploadMiddleware.js';
 
@@ -10,12 +12,34 @@ router.post('/register',registerUser);
 router.post('/login',loginUser);
 router.get('/getUser',protect,getUserInfo);
 
-router.post('/upload-image',upload.single('image'),(req,res)=>{
-    if(!req.file){
-        return res.status(400).json({message:"No file uploaded"});
+router.post('/upload', upload.single('image'), async (req, res) => {
+    try {
+        const streamUpload = (req) => {
+            return new Promise((resolve, reject) => {
+                const stream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: 'finTrack'
+                    },
+                    (error, result) => {
+                        if (result) {
+                            resolve(result);
+                        } else {
+                            reject(error);
+                        }
+                    }
+                );
+
+                streamifier.createReadStream(req.file.buffer).pipe(stream);
+            });
+        };
+
+        const result = await streamUpload(req);
+
+        res.json({ url: result.secure_url, public_id: result.public_id });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Upload failed' });
     }
-    const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-    res.status(200).json({imageUrl});
-})
+});
 
 export default router;

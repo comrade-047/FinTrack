@@ -8,6 +8,7 @@ export const API_PATHS = {
     },
     DASHBOARD:{
         GET_DATA: `${BASE_URL}/dashboard`,
+        DOWNLOAD_TRANSACTIONS_EXCEL: `${BASE_URL}/dashboard/download-transactions`,
     },
     INCOME:{
         ADD_INCOME: `${BASE_URL}/income/add`,
@@ -22,6 +23,6 @@ export const API_PATHS = {
         DOWNLOAD_EXPENSE_EXCEL: `${BASE_URL}/expense/download`,
     },
     IMAGE:{
-        UPLOAD_IMAGE: `${BASE_URL}/auth/upload-image`,
+        UPLOAD_IMAGE: `${BASE_URL}/auth/upload`,
     }
 };

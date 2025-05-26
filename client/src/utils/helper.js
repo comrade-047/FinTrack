@@ -33,6 +33,7 @@ export const prepareExpenseBarChartData = (data = []) =>{
     const chartData = data.map((item) => ({
         category:item?.category,
         amount: item?.amount,
+        month: moment(item?.date).format("Do MMM"),
     }));
 
     return chartData;
@@ -58,6 +59,18 @@ export const prepareExpenseLineChartData = (data = []) => {
         month : moment(item?.date).format("Do MMM"),
         amount: item?.amount,
         category: item?.category,
+    }));
+
+    return chartData;
+}
+
+export const prepareTransactionBarChartData = (data = []) => {
+    
+    const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    const chartData = sortedData.map((item) => ({
+        month: moment(item?.date).format("Do MMM"),
+        amount: item?.amount,
     }));
 
     return chartData;

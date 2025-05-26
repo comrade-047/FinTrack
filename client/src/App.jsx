@@ -14,6 +14,8 @@ import Home from "./pages/Dashboard/Home";
 import Income from "./pages/Dashboard/Income";
 import Expense from "./pages/Dashboard/Expense";
 import UserProvider from "./context/userContext";
+import LandingPage from "./pages/LandingPage/LandingPage";
+import Transactions from "./pages/Dashboard/Transactions";
 
 const App = () => {
   return(
@@ -21,12 +23,15 @@ const App = () => {
       <div>
         <Router>
           <Routes>
-            <Route path="/" element={<Root/>} />
+            <Route path="/" element={<LandingPage/>} />
+            <Route path="/logout" element={<Login/>} />
             <Route path="/login"  exact element={<Login/>} />
             <Route path="/signUp" exact element={<SignUp/>} />
             <Route path="/dashboard" exact element={<Home/>} />
             <Route path="/income" exact element={<Income/>} />
             <Route path="/expense" exact element={<Expense/>} />
+            <Route path= "/transactions" exact element={<Transactions/>} />
+            <Route path="*" element={<LandingPage/>} />
           </Routes>
           <Toaster
               toastOptions={{

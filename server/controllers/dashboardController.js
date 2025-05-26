@@ -1,4 +1,5 @@
 import { isValidObjectId, Types } from "mongoose";
+import xlsx from "xlsx";
 
 import Income from "../models/Income.js";
 import Expense from "../models/Expense.js";
@@ -79,4 +80,57 @@ export const getDashboardData = async(req,res)=>{
     }
 };
 
-// have to recheck the code
+// Function to download expense as excel
+
+export const downloadTransactionsExcel = async (req, res) => {
+    const userId = req.user.id;
+
+    try {
+        const income = await Income.find({ userId }).sort({ date: -1 });
+        const expense = await Expense.find({ userId }).sort({ date: -1 });
+
+        if (income.length === 0 && expense.length === 0) {
+            return res.status(404).json({ message: "No transactions found" });
+        }
+
+        const incomeData = income.map(item => ({
+            type: "Income",
+            source_or_category: item.source,
+            amount: item.amount,
+            date: item.date,
+        }));
+
+        const expenseData = expense.map(item => ({
+            type: "Expense",
+            source_or_category: item.category,
+            amount: item.amount,
+            date: item.date,
+        }));
+
+        // Combine all transactions
+        const allTransactions = [...incomeData, ...expenseData];
+
+        const wb = xlsx.utils.book_new();
+        const wsAll = xlsx.utils.json_to_sheet(allTransactions);
+        const wsIncome = xlsx.utils.json_to_sheet(incomeData);
+        const wsExpense = xlsx.utils.json_to_sheet(expenseData);
+
+        xlsx.utils.book_append_sheet(wb, wsAll, "All Transactions");
+        if (incomeData.length > 0) xlsx.utils.book_append_sheet(wb, wsIncome, "Income");
+        if (expenseData.length > 0) xlsx.utils.book_append_sheet(wb, wsExpense, "Expense");
+
+        const fileName = "transactions_details.xlsx";
+        xlsx.writeFile(wb, fileName);
+
+        res.download(fileName, err => {
+            if (err) {
+                console.error("Download error:", err);
+                res.status(500).send("Error downloading file");
+            }
+        });
+
+    } catch (err) {
+        console.error("Transaction export error:", err);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
