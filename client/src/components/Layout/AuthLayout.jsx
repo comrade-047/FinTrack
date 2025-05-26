@@ -9,7 +9,7 @@ const AuthLayout = ({children}) => {
             <div className="w-screen h-screen md:w-[600px] px-12 pt-8 pb-12">
                 <h2 
                     onClick={()=>navigate('/')}
-                    className="text-lg font-medium text-black hover:text-gray-500"
+                    className="text-xl font-semibold text-[#13AA52] hover:text-[#3B7549] cursor-pointer mb-8 flex items-center gap-2"
                 > 
                     FinTrack
                 </h2>

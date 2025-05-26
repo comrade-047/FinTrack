@@ -1,4 +1,6 @@
-export const BASE_URL = "http://localhost:3000/api/v1";
+export const BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api/v1";
+console.log("Environment Variable VITE_BACKEND_URL:", import.meta.env.VITE_BACKEND_URL);
+console.log("API Base URL:", BASE_URL);
 
 export const API_PATHS = {
     AUTH: {
