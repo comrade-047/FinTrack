@@ -5,8 +5,7 @@ const LandingPage = () => {
 
   return (
     <div
-      className="min-h-screen bg-white relative px-6 py-6"
-      style={{ fontFamily: "'Montserrat', sans-serif" }}
+      className="min-h-screen bg-green-100 relative px-6 py-6"
     >
       {/* Top Bar */}
       <div className="flex justify-between items-center w-full">
