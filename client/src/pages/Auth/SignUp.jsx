@@ -99,24 +99,26 @@ const SignUp = ()=>{
                     
                     <ProfilePicSelector image={profilePic} setImage={setProfilePic} />
 
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                        <Input
-                            value={fullName}
-                            onChange={({target})=> setFullName(target.value)}
-                            label="Full Name"
-                            placeholder="John Doe"
-                            type="text"
-                        />
+                    <div className='flex flex-col '>
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4'>
+                            <Input
+                                value={fullName}
+                                onChange={({target})=> setFullName(target.value)}
+                                label="Full Name"
+                                placeholder="John Doe"
+                                type="text"
+                            />
 
-                        <Input
-                            value = {email}
-                            onChange = {({target})=> setEmail(target.value)}
-                            label = "Email Address"
-                            placeholder = "john@gmail.com"
-                            type = "text"
-                        />
+                            <Input
+                                value = {email}
+                                onChange = {({target})=> setEmail(target.value)}
+                                label = "Email Address"
+                                placeholder = "john@gmail.com"
+                                type = "text"
+                            />
+                        </div>
 
-                       <div className='col-span-2'>
+                       <div className='col-span-2 -mt-4'>
                              <Input
                                 value = {password}
                                 onChange = {({target})=> setPassword(target.value)}
