@@ -10,6 +10,8 @@ import axiosInstance from "../../utils/axiosInstance";
 import {API_PATHS} from "../../utils/apiPaths";
 import {toast} from "react-hot-toast";
 import DeleteAlert from "../../components/DeleteAlert";
+import PageLoader from "../../components/PageLoader/PageLoader";
+
 const Expense = () => {
 
     useUserAuth();
@@ -110,7 +112,9 @@ const Expense = () => {
     }
     , []);
 
+    if(loading)  return <PageLoader/>
     return (
+
         <DashboardLayout activeMenu="Expense">
             <div className="my-5 mx-auto">
                 <div className="grid grid-cols-1 gap-6">

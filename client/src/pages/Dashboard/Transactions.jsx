@@ -6,6 +6,7 @@ import TransactionOverview from "../../components/Transactions/TransactionOvervi
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import TransactionList from "../../components/Transactions/TransactionList";
+import PageLoader from "../../components/PageLoader/PageLoader";
 
 const Transactions = () => {
     useUserAuth();
@@ -54,6 +55,8 @@ const Transactions = () => {
         fetchTransactionDetails();
         return () => {};
     }, []);
+
+    if(loading) return <PageLoader/>
 
     return (
         <DashboardLayout activeMenu="Transactions">

@@ -15,6 +15,7 @@ import ExpenseTransactions from "../../components/Dashboard/ExpenseTransactions"
 import Last30DaysExpenses from "../../components/Dashboard/Last30DaysExpenses";
 import RecentIncomeWithChart from "../../components/Dashboard/RecentIncomeWithChart";
 import RecentIncome from "../../components/Dashboard/RecentIncome";
+import PageLoader from "../../components/PageLoader/PageLoader";
 
 const Home = () =>{
 
@@ -56,6 +57,7 @@ const Home = () =>{
 
     },[]);
 
+    if(loading) return <PageLoader />;
     return (
         <DashboardLayout activeMenu="Dashboard">
             <div className="my-5 mx-auto">

@@ -10,6 +10,7 @@ import { toast } from "react-hot-toast";
 import IncomeList from "../../components/Income/IncomeList";
 import DeleteAlert from "../../components/DeleteAlert";
 import { useUserAuth } from "../../hooks/useUserAuth";
+import PageLoader from "../../components/PageLoader/PageLoader";
 
 const Income = () =>{
 
@@ -114,6 +115,8 @@ const Income = () =>{
 
         return () =>{};
     },[]);
+
+    if(loading) return <PageLoader/>
 
     return (
         <DashboardLayout activeMenu="Income">
